@@ -1,10 +1,10 @@
 import express from 'express';
-import routes from './routes/index';
+import routes from './routes/image';
 
 const app = express();
 const port = 3000;
 
-app.use('/api',routes)
+app.use('/',routes)
 
 app.listen(port, ()=> {
   console.log(`server started at localhost:${port}`)
