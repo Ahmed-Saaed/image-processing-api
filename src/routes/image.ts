@@ -1,26 +1,24 @@
 import express  from "express";
 import sharp from "sharp";
 import path from "path";
+import resize from "../resize";
 // import { promises as fsPromises } from "fs";
 
+let width:number =600
+let height:number =400
 
+const images = express.Router();
 
-const routes = express.Router();
 const fileName= path.resolve(__dirname, '../../images/fjord.jpg');
-
 const output = path.resolve(__dirname, '../../thumbnails/fjord.jpg');
 
-routes.get('/', (req, res) => {
+images.get(`/`,  (req, res) => {
   
+    res.sendFile(output)
+    resize(fileName, width, height, output);
+  ;
   
-  sharp(fileName)
-  .resize(200, 400, {
-    background: {r:0,g:0,b:0,alpha:1}
-  })
-  .toFile(output)
-
-  res.sendFile(output);
 });
 
 
-  export default routes ;
+  export default images ;
