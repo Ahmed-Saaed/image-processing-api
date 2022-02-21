@@ -45,10 +45,28 @@ var path_1 = __importDefault(require("path"));
 var resize_1 = __importDefault(require("../resize"));
 var fs_1 = require("fs");
 var fs_2 = require("fs");
+var express_validator_1 = require("express-validator");
 var images = express_1.default.Router();
 var filePath = path_1.default.resolve(__dirname, "../../images");
 var outputPath = path_1.default.resolve(__dirname, "../../thumbnails");
 // check if the file is exist in the thumbfile
+//TODO here i tried to do it in an async way it create the new thump but it doesn't render it
+// export function fileExist(file: string): string {
+//   let isExist;
+//   stat(file, (err, stats): void => {
+//     if (err) throw err;
+//     if (stats.isFile()) {
+//       isExist = true;
+//     } else {
+//       isExist = false;
+//     }
+//   });
+//   if (isExist) {
+//     return file;
+//   } else {
+//     return '';
+//   }
+// }
 function fileExist(file) {
     try {
         if ((0, fs_2.existsSync)(file)) {
@@ -70,6 +88,12 @@ images.get('/images', function (req, res) { return __awaiter(void 0, void 0, voi
         height = "".concat(req.query.height);
         fileName = "".concat(filePath, "/").concat(req.query.filename, ".jpg");
         output = "".concat(outputPath, "/").concat(req.query.filename, "-").concat(req.query.width, "-").concat(req.query.height, ".jpg");
+        //use express validator to validate the query
+        (0, express_validator_1.query)([width, height]).isInt().withMessage('must be a number');
+        (0, express_validator_1.query)(fileName)
+            .isString()
+            .isLength({ min: 1 })
+            .withMessage('must be a string more than l char');
         existImage = fileExist(output);
         if (existImage.length < 1) {
             try {
@@ -78,7 +102,7 @@ images.get('/images', function (req, res) { return __awaiter(void 0, void 0, voi
                     .then(function (response) {
                     res.sendFile(response);
                 })
-                    .catch(function () { return res.send('<p>sth went wrong try again </p>'); });
+                    .catch(function () { return res.send('<p>something went wrong try again </p>'); });
             }
             catch (_b) {
                 res.send('<p>something went wrong during the process</p>');

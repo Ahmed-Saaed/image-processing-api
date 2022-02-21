@@ -12,6 +12,25 @@ const outputPath = path.resolve(__dirname, `../../thumbnails`);
 
 // check if the file is exist in the thumbfile
 
+//TODO here i tried to do it in an async way it create the new thump but it doesn't render it
+
+// export function fileExist(file: string): string {
+//   let isExist;
+//   stat(file, (err, stats): void => {
+//     if (err) throw err;
+//     if (stats.isFile()) {
+//       isExist = true;
+//     } else {
+//       isExist = false;
+//     }
+//   });
+//   if (isExist) {
+//     return file;
+//   } else {
+//     return '';
+//   }
+// }
+
 export function fileExist(file: string): string {
   try {
     if (existsSync(file)) {
@@ -50,7 +69,7 @@ images.get(
           .then((response) => {
             res.sendFile(response);
           })
-          .catch(() => res.send('<p>sth went wrong try again </p>'));
+          .catch(() => res.send('<p>something went wrong try again </p>'));
       } catch {
         res.send('<p>something went wrong during the process</p>');
       }
