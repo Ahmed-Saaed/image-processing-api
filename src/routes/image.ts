@@ -18,8 +18,7 @@ export function fileExist(file: string): string {
     } else {
       return '';
     }
-  } catch (error) {
-    console.log(error);
+  } catch {
     return '';
   }
 }

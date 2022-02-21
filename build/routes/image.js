@@ -58,8 +58,7 @@ function fileExist(file) {
             return '';
         }
     }
-    catch (error) {
-        console.log(error);
+    catch (_a) {
         return '';
     }
 }
