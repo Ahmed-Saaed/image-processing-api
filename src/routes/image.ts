@@ -31,6 +31,15 @@ const outputPath = path.resolve(__dirname, `../../thumbnails`);
 //   }
 // }
 
+//this is the solution for the pervious to.do
+
+// try {
+//   await fs.access(file);
+//   return true;
+// } catch (e) {
+//   return false
+// }
+
 export function fileExist(file: string): string {
   try {
     if (existsSync(file)) {
