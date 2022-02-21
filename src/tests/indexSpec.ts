@@ -7,7 +7,7 @@ const request = supertest(app);
 // const imageRequest = supertest(images);
 
 describe('test endpoint responses', () => {
-  it('the images endpoint should return a status of 200', () => {
+  it('the images endpoint should return a status of 200', (): void => {
     request
       .get('/api/images?filename=encenadaport&width=200&height=400')
       .then((response) => {
@@ -15,7 +15,7 @@ describe('test endpoint responses', () => {
       });
   });
 
-  afterAll(function () {
+  afterAll(function (): void {
     fs.unlink(
       path.resolve(__dirname, `../../thumbnails/encenadaport-200-400.jpg`)
     );

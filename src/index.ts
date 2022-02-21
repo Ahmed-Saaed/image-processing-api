@@ -6,7 +6,7 @@ const port = 3000;
 
 app.use('/api', images);
 
-app.listen(port, () => {
+app.listen(port, (): void => {
   console.log(`server started at localhost:${port}`);
 });
 
