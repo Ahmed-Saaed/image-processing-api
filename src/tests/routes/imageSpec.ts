@@ -1,7 +1,7 @@
 import { fileExist } from '../../routes/image';
 import path from 'path';
 
-const filePath = path.resolve(__dirname, `../../thumbnails/fjord-750-800.jpg`);
+// const filePath = path.resolve(__dirname, `../../thumbnails/fjord-750-800.jpg`);
 const fail = path.resolve(__dirname, `../../images/landwater.jpg`);
 
 describe('image process test', () => {
